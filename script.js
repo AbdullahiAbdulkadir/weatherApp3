@@ -20,20 +20,22 @@ searchButton.addEventListener("click", () => {
         <p>Humidity: ${today.day.avghumidity}%</p>
       `;
 
-      forecastHtml += "<h2>7-Day Forecast</h2>";
+      forecastHtml += "<h2>7-Day Forecast</h2> <div id='class1'>";
 
       week.forEach((day) => {
         forecastHtml += `
           <div>
-            <p>${day.date}</p>
-            <p>Temperature: ${day.day.avgtemp_c} &#8451;</p>
-            <p>Condition: ${day.day.condition.text}</p>
+            <p><strong>Date:</strong><br>${day.date}</p>
+            <p><strong>Temperature:</strong><br>${day.day.avgtemp_c} &#8451</p>
+            <p><strong>Condition:</strong><br>${day.day.condition.text}</p>
           </div>
         `;
       });
+      forecastHtml += "</div>"
       resultsDiv.innerHTML = forecastHtml;
     })
     .catch((error) => {
+      console.log(error)
       resultsDiv.innerHTML = `<p>Unable to fetch weather data. Please try again later.</p>`;
     });
 });
